@@ -53,5 +53,10 @@ public class CompanyServiceimp implements CompanyService {
 
     }
 
+    @Override
+    public Company getcompanybyid(long id) {
+        return companyRepository.findById(id).orElse(null);
+    }
+
 
 }

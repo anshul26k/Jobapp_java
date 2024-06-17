@@ -1,5 +1,6 @@
 package com.jobapp.jabapp.company;
 
+import com.jobapp.jabapp.job.Job;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,15 @@ public class CompanyController {
     @GetMapping
     public List<Company> getALlCompanies(){
         return companyService.getAllCompanies();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Company> getcompanybyyid(@PathVariable long id){
+        Company company = companyService.getcompanybyid(id);
+        if(company != null)
+            return  new ResponseEntity<>(company, HttpStatus.OK);
+
+        return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping

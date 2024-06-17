@@ -2,6 +2,7 @@ package com.jobapp.jabapp.company;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jobapp.jabapp.job.Job;
+import com.jobapp.jabapp.review.Review;
 import jakarta.persistence.*;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +19,21 @@ public class Company {
     @JsonIgnore
     @OneToMany(mappedBy = "company")
     private List<Job> jobs;
-//    private List<Reviws>revies
+
+    @OneToMany(mappedBy = "company")
+    private List<Review>reviews;
+
 
 
     public Company() {
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 
     public long getId() {
